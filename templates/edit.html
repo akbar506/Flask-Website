@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+     Edit {{user_info.name}}
+{% endblock title %}
+{% block body %}
+<div class="container my-5">
+    <h2>Edit Information {{user_info.name}}</h2>
+
+  {% if success == "Information Successfully Updated." %}
+  <div class="alert alert-success" role="alert">
+    {{success}}
+  </div>
+  {% endif %}
+
+  {% if error == "Email already exist." %}
+
+  <div class="alert alert-danger" role="alert">
+    {{error}}
+  </div>
+  {% endif %}
+
+
+  <form action="/edit/{{user_info.id}}" method="POST">
+    <div class="mb-3">
+      <label for="InputName1" class="form-label">Name</label>
+      <input type="name" class="form-control" name="name" value="{{user_info.name}}" id="name" aria-describedby="emailHelp">
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Email address</label>
+      <input type="email" class="form-control" value="{{user_info.email}}" name="email" id="email" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Password</label>
+      <input type="password" class="form-control" value="{{user_info.password}}" name="password" id="password">
+    </div>
+    <button type="submit" class="btn btn-dark">Save Changes</button>
+  </form>
+</div>
+{% endblock body %}

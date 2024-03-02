@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}
+Admin Page
+{% endblock title %}
+{% block body %}
+<div class="container my-5">
+    <h1>Enter Admin Code</h1>
+    <form action="/admin" method="POST">
+        <input class="form-control form-control-lg my-3" name='pin_code' type="password" placeholder="PIN CODE"
+            aria-label=".form-control-lg example">
+        <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+    {% if code == '109238' %}
+    <div class="container my-5">
+        <h2>User Data</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Date Created</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user_info in alluserinfo %}
+
+                <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{user_info.name}}</td>
+                    <td>{{user_info.email}}</td>
+                    <td>{{user_info.password}}</td>
+                    <td>{{user_info.date_time}}</td>
+                    <td>
+                        <a href="/edit/{{user_info.id}}" type="button" class="btn btn-outline-dark btn-sm">Edit</a>
+                        <a href="/delete/{{user_info.id}}" type="button" class="btn btn-outline-dark btn-sm">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+{% endblock body %}
